@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Result extends StatelessWidget {
   final int resultScore;
+  final VoidCallback resetHandler;
 
   // ignore: use_key_in_widget_constructors
-  const Result(this.resultScore);
+  const Result(this.resultScore, this.resetHandler);
 
   String get resultPhrase {
     try {
@@ -29,12 +28,18 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        resultPhrase,
-        style: const TextStyle(
-          fontSize: 36,
-          fontWeight: FontWeight.bold,
-        ),
+      child: Column(
+        children: [
+          Text(
+            resultPhrase,
+            style: const TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          ElevatedButton(
+              onPressed: resetHandler, child: const Text('Restart Quiz!'))
+        ],
       ),
     );
   }
