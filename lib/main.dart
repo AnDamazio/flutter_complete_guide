@@ -41,12 +41,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     void _answerQuestion() {
-      setState(() => {
-            _questionIndex + 1 < questions.length
-                ? _questionIndex++
-                : print('Acabou')
-          });
-
+      setState(
+        () => {
+          _questionIndex + 1 < questions.length
+              ? _questionIndex++
+              : print('Acabou')
+        },
+      );
       //print('Answer chosen! $_questionIndex');
     }
 
@@ -55,17 +56,21 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('My First App'),
         ),
-        body: Column(
-          children: [
-            Question(
-                questionText:
-                    questions[_questionIndex]['questionText'] as String),
-            ...(questions[_questionIndex]['answers'] as List<String>)
-                .map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList()
-          ],
-        ),
+        body: _questionIndex + 1 < questions.length
+            ? Column(
+                children: [
+                  Question(
+                      questionText:
+                          questions[_questionIndex]['questionText'] as String),
+                  ...(questions[_questionIndex]['answers'] as List<String>)
+                      .map((answer) {
+                    return Answer(_answerQuestion, answer);
+                  }).toList()
+                ],
+              )
+            : const Center(
+                child: Text('You did it!'),
+              ),
       ),
     );
   }
