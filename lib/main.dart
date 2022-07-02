@@ -19,14 +19,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  var _questionsLength;
+  var _questionsLength = 0;
 
   @override
   Widget build(BuildContext context) {
     void _answerQuestion() {
-      setState(() {
-        _questionIndex = _questionIndex + 1;
-      });
+      setState(() => {
+            _questionIndex < _questionsLength
+                ? _questionIndex++
+                : print('Acabou')
+          });
+
       print('Answer chosen! $_questionIndex, $_questionsLength');
     }
 
@@ -45,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       }
     ];
 
-    _questionsLength = questions.length;
+    _questionsLength = questions.length - 1;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
