@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
       _totalScore += score;
       setState(
         () => {
-          _questionIndex + 1 < _questions.length
+          _questionIndex < _questions.length
               ? _questionIndex++
               : print('Acabou')
         },
@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('My First App'),
         ),
-        body: _questionIndex + 1 < _questions.length
+        body: _questionIndex < _questions.length
             ? Quiz(
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIndex,
