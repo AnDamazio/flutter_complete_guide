@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Answer extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
-  const Answer(this.selectHandler);
+  const Answer(this.selectHandler, this.answerText);
 
   final VoidCallback selectHandler;
+  final String answerText;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +15,12 @@ class Answer extends StatelessWidget {
         onPressed: selectHandler,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.blue),
+          textStyle: MaterialStateProperty.all(
+            const TextStyle(fontSize: 25),
+          ),
+          foregroundColor: MaterialStateProperty.all(Colors.black),
         ),
-        child: const Text('Answer 1'),
+        child: Text(answerText),
       ),
     );
   }
