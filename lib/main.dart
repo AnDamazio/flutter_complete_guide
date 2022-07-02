@@ -19,36 +19,37 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  var _questionsLength = 0;
+  static const questions = [
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': ['Black', 'Red', 'Green', 'White'],
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
+    },
+    {
+      'questionText': 'What\'s your favorite instructor?',
+      'answers': ['Rodrigo', 'Luizinho', 'Angela', 'Max'],
+    },
+    {
+      'questionText': 'What\'s your favorite character?',
+      'answers': ['Sócrates', 'Teeteto', 'Euclides', 'Terpsião'],
+    }
+  ];
 
   @override
   Widget build(BuildContext context) {
     void _answerQuestion() {
       setState(() => {
-            _questionIndex < _questionsLength
+            _questionIndex + 1 < questions.length
                 ? _questionIndex++
                 : print('Acabou')
           });
 
-      print('Answer chosen! $_questionIndex, $_questionsLength');
+      //print('Answer chosen! $_questionIndex');
     }
 
-    var questions = [
-      {
-        'questionText': 'What\'s your favorite color?',
-        'answers': ['Black', 'Red', 'Green', 'White'],
-      },
-      {
-        'questionText': 'What\'s your favorite animal?',
-        'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
-      },
-      {
-        'questionText': 'What\'s your favorite instructor?',
-        'answers': ['Rodrigo', 'Luizinho', 'Angela', 'Max'],
-      }
-    ];
-
-    _questionsLength = questions.length - 1;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
