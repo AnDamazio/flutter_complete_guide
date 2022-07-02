@@ -19,28 +19,50 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
   static const _questions = [
     {
       'questionText': 'What\'s your favorite color?',
-      'answers': ['Black', 'Red', 'Green', 'White'],
+      'answers': [
+        {'text': 'Black', 'score': 1},
+        {'text': 'Red', 'score': 4},
+        {'text': 'Green', 'score': 2},
+        {'text': 'White', 'score': 3}
+      ],
     },
     {
       'questionText': 'What\'s your favorite animal?',
-      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
+      'answers': [
+        {'text': 'Rabbit', 'score': 10},
+        {'text': 'Snake', 'score': 1},
+        {'text': 'Elephant', 'score': 6},
+        {'text': 'Lion', 'score': 5}
+      ],
     },
     {
       'questionText': 'What\'s your favorite instructor?',
-      'answers': ['Rodrigo', 'Luizinho', 'Angela', 'Max'],
+      'answers': [
+        {'text': 'Rodrigo', 'score': 2},
+        {'text': 'Luizinho', 'score': 1},
+        {'text': 'Angela', 'score': 3},
+        {'text': 'Max', 'score': 10}
+      ],
     },
     {
       'questionText': 'What\'s your favorite character?',
-      'answers': ['Sócrates', 'Teeteto', 'Euclides', 'Terpsião'],
+      'answers': [
+        {'text': 'Sócrates', 'score': 1},
+        {'text': 'Teeteto', 'score': 2},
+        {'text': 'Euclides', 'score': 3},
+        {'text': 'Terpsião', 'score': 4}
+      ],
     }
   ];
 
   @override
   Widget build(BuildContext context) {
-    void _answerQuestion() {
+    void _answerQuestion(int score) {
+      _totalScore += score;
       setState(
         () => {
           _questionIndex + 1 < _questions.length
@@ -62,7 +84,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_totalScore),
       ),
     );
   }
