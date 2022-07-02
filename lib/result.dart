@@ -37,8 +37,17 @@ class Result extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          ElevatedButton(
-              onPressed: resetHandler, child: const Text('Restart Quiz!'))
+          TextButton(
+            onPressed: resetHandler,
+            style: ButtonStyle(
+              textStyle: MaterialStateProperty.all(
+                const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            child: const Text(
+              'Restart Quiz!',
+            ),
+          )
         ],
       ),
     );
